@@ -10,7 +10,9 @@ Make hyperf2.0 load faster by only caching file anotations in the vendor directo
 
 ## usage
 
-- Replace `Hyperf\Di\ClassLoader::init();` with `Hyperf\FastLoader::init();`
+This component only take effect when the configure `scan_cache_vendor_only` is turned on and the configure `scan_cacheable` is turned off.
+
+- Replace `Hyperf\Di\ClassLoader::init();` with `Hector\FastLoader\FastLoader::init();`
 
 - Add the configure below to the config file `config/config.php`
 
