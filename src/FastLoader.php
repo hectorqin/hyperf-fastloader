@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
-namespace Hyperf\FastLoader;
+namespace Hector\FastLoader;
 
 use Hyperf\Di\ClassLoader as BaseClassLoader;
 use Composer\Autoload\ClassLoader as ComposerClassLoader;
