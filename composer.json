@@ -1,0 +1,36 @@
+{
+    "name": "hectorqin/hyperf-fastloader",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hectorqin",
+            "email": "hectorqin@163.com",
+            "homepage": "https://github.com/hectorqin"
+        }
+    ],
+    "keywords": [
+        "php",
+        "hyperf",
+        "classLoader"
+    ],
+    "description": "Make hyperf load faster",
+    "autoload": {
+        "psr-4": {
+            "Hyperf\\Fastloader\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.2",
+        "ext-swoole": ">=4.4",
+        "hyperf/di": "~2.0.0"
+    },
+    "require-dev": {
+        "hyperf/framework": "~2.0.0",
+        "hyperf/config": "~2.0.0",
+        "swoft/swoole-ide-helper": "dev-master"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
