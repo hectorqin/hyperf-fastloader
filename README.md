@@ -1,6 +1,6 @@
 # hyperf-fastloader
 
-Make hyperf load faster by only caching vendor anotation.
+Make hyperf2.0 load faster by only caching vendor anotation.
 
 ## install
 

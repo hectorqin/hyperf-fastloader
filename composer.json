@@ -12,6 +12,7 @@
     "keywords": [
         "php",
         "hyperf",
+        "hyperf2.0",
         "classLoader"
     ],
     "description": "Make hyperf load faster",
