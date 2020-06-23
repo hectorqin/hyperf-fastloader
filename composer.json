@@ -15,7 +15,7 @@
         "hyperf2.0",
         "classLoader"
     ],
-    "description": "Make hyperf load faster",
+    "description": "Make hyperf2.0 load faster",
     "autoload": {
         "psr-4": {
             "Hyperf\\Fastloader\\": "src/"
