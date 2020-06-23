@@ -10,4 +10,13 @@ Make hyperf2.0 load faster by only caching file anotations in the vendor directo
 
 ## usage
 
-Replace `Hyperf\Di\ClassLoader::init();` with `Hyperf\FastLoader::init();`
+- Replace `Hyperf\Di\ClassLoader::init();` with `Hyperf\FastLoader::init();`
+
+- Add the configure below to the config file `config/config.php`
+
+    ```php
+    // is only caching file anotations in the vendor directory
+    'scan_cache_vendor_only'     => env('SCAN_CACHE_VENDOR_ONLY', false),
+    ```
+
+- Turn off `scan_cacheable`
