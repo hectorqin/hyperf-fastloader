@@ -18,7 +18,7 @@
     "description": "Make hyperf2.0 load faster",
     "autoload": {
         "psr-4": {
-            "Hector\\Fastloader\\": "src/"
+            "Hector\\FastLoader\\": "src/"
         }
     },
     "require": {
