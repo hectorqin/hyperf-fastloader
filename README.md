@@ -19,4 +19,10 @@ Make hyperf2.0 load faster by only caching file anotations in the vendor directo
     'scan_cache_vendor_only'     => env('SCAN_CACHE_VENDOR_ONLY', false),
     ```
 
+- Add the configure below to the env file `.env`
+
+    ```env
+    SCAN_CACHE_VENDOR_ONLY=true
+    ```
+
 - Turn off `scan_cacheable`
