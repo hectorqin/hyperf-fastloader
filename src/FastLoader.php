@@ -44,60 +44,6 @@ class FastLoader extends BaseClassLoader
         $this->proxies = $proxyManager->getProxies();
     }
 
-    public static function init(?string $proxyFileDirPath = null, ?string $configDir = null): void
-    {
-        if (! $proxyFileDirPath) {
-            // This dir is the default proxy file dir path of Hyperf
-            $proxyFileDirPath = \BASE_PATH . '/runtime/container/proxy/';
-        }
-
-        if (! $configDir) {
-            // This dir is the default proxy file dir path of Hyperf
-            $configDir = \BASE_PATH . '/config/';
-        }
-
-        $loaders = spl_autoload_functions();
-
-        // Proxy the composer class loader
-        foreach ($loaders as &$loader) {
-            $unregisterLoader = $loader;
-            if (is_array($loader) && $loader[0] instanceof ComposerClassLoader) {
-                /** @var ComposerClassLoader $composerClassLoader */
-                $composerClassLoader = $loader[0];
-                AnnotationRegistry::registerLoader(function ($class) use ($composerClassLoader) {
-                    return (bool) $composerClassLoader->findFile($class);
-                });
-                $loader[0] = new static($composerClassLoader, $proxyFileDirPath, $configDir);
-            }
-            spl_autoload_unregister($unregisterLoader);
-        }
-
-        unset($loader);
-
-        // Re-register the loaders
-        foreach ($loaders as $loader) {
-            spl_autoload_register($loader);
-        }
-
-        // Initialize Lazy Loader. This will prepend LazyLoader to the top of autoload queue.
-        LazyLoader::bootstrap($configDir);
-    }
-
-    protected function loadDotenv(): void
-    {
-        $repository = RepositoryBuilder::create()
-            ->withReaders([
-                new Adapter\PutenvAdapter(),
-            ])
-            ->withWriters([
-                new Adapter\PutenvAdapter(),
-            ])
-            ->immutable()
-            ->make();
-
-        Dotenv::create($repository, [\BASE_PATH])->load();
-    }
-
     protected function extendScanConfig(ScanConfig $scanConfig, string $configDir)
     {
         if ($this->isScanCacheVendorOnly($configDir)) {

@@ -24,11 +24,11 @@
     "require": {
         "php": ">=7.2",
         "ext-swoole": ">=4.4",
-        "hyperf/di": "~2.0.0"
+        "hyperf/di": "~2.0.1"
     },
     "require-dev": {
-        "hyperf/framework": "~2.0.0",
-        "hyperf/config": "~2.0.0",
+        "hyperf/framework": "~2.0.1",
+        "hyperf/config": "~2.0.1",
         "swoft/swoole-ide-helper": "dev-master"
     },
     "config": {
