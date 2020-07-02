@@ -1,28 +1,15 @@
 <?php
 
 declare(strict_types=1);
-/**
- * This file is part of Hyperf.
- *
- * @link     https://www.hyperf.io
- * @document https://doc.hyperf.io
- * @contact  group@hyperf.io
- * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
- */
+
 namespace Hector\FastLoader;
 
 use Hyperf\Di\ClassLoader as BaseClassLoader;
 use Composer\Autoload\ClassLoader as ComposerClassLoader;
-use Doctrine\Common\Annotations\AnnotationRegistry;
-use Dotenv\Dotenv;
-use Dotenv\Repository\Adapter;
-use Dotenv\Repository\RepositoryBuilder;
 use Hyperf\Di\Annotation\ScanConfig;
-use Hyperf\Di\Annotation\Scanner;
 use Hyperf\Di\Aop\ProxyManager;
-use Hyperf\Di\LazyLoader\LazyLoader;
 
-class FastLoader extends BaseClassLoader
+class ClassLoader extends BaseClassLoader
 {
     public function __construct(ComposerClassLoader $classLoader, string $proxyFileDir, string $configDir)
     {
@@ -46,7 +33,9 @@ class FastLoader extends BaseClassLoader
 
     protected function extendScanConfig(ScanConfig $scanConfig, string $configDir)
     {
+        $scanConfig->isScanCacheVendorOnly = false;
         if ($this->isScanCacheVendorOnly($configDir)) {
+            $scanConfig->isScanCacheVendorOnly = true;
             $func = function() {
                 $filteredPath = [];
                 $vendorPath = \BASE_PATH . '/vendor';
@@ -62,7 +51,7 @@ class FastLoader extends BaseClassLoader
         return $scanConfig;
     }
 
-    protected function isScanCacheVendorOnly(string $configDir): bool
+    public function isScanCacheVendorOnly(string $configDir): bool
     {
         $cacheFile = \BASE_PATH . '/runtime/container/collectors.cache';
         if (\file_exists($cacheFile)) {

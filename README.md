@@ -12,7 +12,13 @@ Make hyperf2.0 load faster by only caching file anotations in the vendor directo
 
 This component only take effect when the configure `scan_cache_vendor_only` is turned on and the configure `scan_cacheable` is turned off.
 
-- Replace `Hyperf\Di\ClassLoader::init();` with `Hector\FastLoader\FastLoader::init();`
+- Init composer classMap (Very important! If you delete PHP class file in the app dirctory or add/remove composer packages, you need to run this command again).
+
+    ```bash
+    composer dump-autoload -o
+    ```
+
+- Replace `Hyperf\Di\ClassLoader::init();` with `Hector\FastLoader\ClassLoader::init();`
 
 - Add the configure below to the config file `config/config.php`
 
